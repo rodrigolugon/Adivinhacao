@@ -1,3 +1,5 @@
+//Pode ter if sem else
+
 #include <stdio.h>
 #include <locale.h>
 
@@ -15,17 +17,18 @@ int main() {
     scanf_s("%d", &chute);
     printf("Seu chute foi %d\n", chute);
 
-    //SE O CHUTE FOR IGUAL AO NUMERO SECRETO 
-    //if (chute == numerosecreto){..}
-    //CASO CONTRARIO = else {..}
-
     if (chute == numerosecreto) {
         printf("Parabéns! Você acertou!\n");
         printf("Jogue de novo, você é um bom jogador!\n");
     }
     else {
-        printf("Você errou!\n");
-        printf("Mas não desanime, tente de novo!\n");
+        if (chute > numerosecreto) {
+            printf("Seu chute é maior que o número secreto\n");
+        }
+
+        if (chute < numerosecreto) {
+            printf("Seu chute é menor que o número secreto\n");
+        }
 
     }
 
