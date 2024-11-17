@@ -15,7 +15,19 @@ int main() {
     scanf_s("%d", &chute);
     printf("Seu chute foi %d\n", chute);
 
-    printf("%d %d", numerosecreto, chute);
+    //SE O CHUTE FOR IGUAL AO NUMERO SECRETO 
+    //if (chute == numerosecreto){..}
+    //CASO CONTRARIO = else {..}
+
+    if (chute == numerosecreto) {
+        printf("Parabéns! Você acertou!\n");
+        printf("Jogue de novo, você é um bom jogador!\n");
+    }
+    else {
+        printf("Você errou!\n");
+        printf("Mas não desanime, tente de novo!\n");
+
+    }
 
     return 0;
 
