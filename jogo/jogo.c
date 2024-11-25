@@ -1,6 +1,6 @@
-#define NUMERO_DE_TENTATIVAS 3
 #include <stdio.h>
 #include <locale.h>
+#define NUMERO_DE_TENTATIVAS 3
 
 int main() {
     setlocale(LC_ALL, "portuguese");
@@ -19,6 +19,12 @@ int main() {
         scanf_s("%d", &chute);
         printf("Seu chute foi %d\n", chute);
 
+        if (chute < 0) {
+            printf("Você não pode chutar números negativos!\n");
+            i = i - 1; //i--
+            continue; // continua o bloco sem matar o loop
+        }
+
         int acertou = (chute == numerosecreto);
         int maior = chute > numerosecreto;
         int menor = chute < numerosecreto;
@@ -27,7 +33,7 @@ int main() {
 
             printf("Parabéns! Você acertou!\n");
             printf("Jogue de novo, você é um bom jogador!\n");
-            break; //freia o for, o computador nao vai nem pensar
+            break;
         }
 
         else if (maior) {
@@ -36,7 +42,9 @@ int main() {
 
         else {
             printf("Seu chute é menor que o número secreto\n");
+
         }
+
     }
 
     printf("Fim de jogo");
