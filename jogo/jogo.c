@@ -1,4 +1,4 @@
-// Mostre em qual tentativa o usuario acertou. while == 0
+// Mostre em qual tentativa o usuario acertou. while (1)
 #include <stdio.h>
 #include <locale.h>
 
@@ -11,11 +11,9 @@ int main() {
 
     int numerosecreto = 42;
     int chute;
-    int ganhou = 0;
     int tentativas = 1;
 
-    while (ganhou == 0) { //enquanto ganhou = a nao ganhou repete o loop
-        //usamos while quando nao sabemos quando o loop vai acabar
+    while (1) { //condicao verdadeira, loop infinito ate eu quebrar ele com break
 
 
         printf("Tentativa %d\n", tentativas);
@@ -35,7 +33,7 @@ int main() {
 
             printf("Parabéns! Você acertou!\n");
             printf("Jogue de novo, você é um bom jogador!\n");
-            ganhou = 1; //para o loop quando for verdadeiro
+            break;
         }
 
         else if (maior) {
@@ -44,15 +42,16 @@ int main() {
 
         else {
             printf("Seu chute é menor que o número secreto\n");
+
         }
 
-        tentativas++; //atencao
+        tentativas++;
     }
 
     printf("Fim de jogo\n");
-    printf("Você acertou em %d tentativas!\n", tentativas - 1);
-    //experimente tirar o -1
+    printf("Você acertou em %d tentativas!\n", tentativas);
 
     return 0;
 
 }
+
