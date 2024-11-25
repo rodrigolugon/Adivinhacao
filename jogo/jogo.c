@@ -1,4 +1,3 @@
-// Mostre em qual tentativa o usuario acertou. while (1)
 #include <stdio.h>
 #include <locale.h>
 
@@ -12,8 +11,9 @@ int main() {
     int numerosecreto = 42;
     int chute;
     int tentativas = 1;
+    double pontos = 1000;
 
-    while (1) { //condicao verdadeira, loop infinito ate eu quebrar ele com break
+    while (1) {
 
 
         printf("Tentativa %d\n", tentativas);
@@ -30,7 +30,6 @@ int main() {
         int maior = chute > numerosecreto;
 
         if (acertou) {
-
             printf("Parabéns! Você acertou!\n");
             printf("Jogue de novo, você é um bom jogador!\n");
             break;
@@ -38,18 +37,21 @@ int main() {
 
         else if (maior) {
             printf("Seu chute é maior que o número secreto\n");
-        }
 
+        }
         else {
             printf("Seu chute é menor que o número secreto\n");
-
         }
 
         tentativas++;
+
+        double pontosperdidos = (chute - numerosecreto) / 2.0;
+        pontos = pontos - pontosperdidos;
     }
 
     printf("Fim de jogo\n");
     printf("Você acertou em %d tentativas!\n", tentativas);
+    printf("Total de pontos: %.1f\n", pontos);
 
     return 0;
 
