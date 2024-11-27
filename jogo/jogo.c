@@ -9,6 +9,21 @@ int main() {
     printf("******************************************\n");
     printf("* Bem vindo ao nosso jogo de adivinhação *\n");
     printf("******************************************\n");
+    printf("               T~~\n");
+    printf("               |\n");
+    printf("              /\"\\\n");
+    printf("      T~~     |'| T~~\n");
+    printf("  T~~ |    T~ WWWW|\n");
+    printf("  |  /\"\\   |  |  |/\\T~~\n");
+    printf(" /\"\\ WWW  /\"\\ |' |WW|\n");
+    printf("WWWWW/\\| /   \\|'/\\|/\"\\\n");
+    printf("|   /__\\/]WWW[\\/__\\WWWW\n");
+    printf("|\"  WWWW'|I_I|'WWWW'  |\n");
+    printf("|   |' |/  -  \\|' |'  |\n");
+    printf("|'  |  |LI=H=LI|' |   |\n");
+    printf("|   |' | |[_]| |  |'  |\n");
+    printf("|   |  |_|###|_|  |   |\n");
+    printf("'---'--'-/___\\-'--'---'\n");
 
     int segundos = time(0);
     srand(segundos);
@@ -24,10 +39,10 @@ int main() {
     printf("Qual nível de dificuldade?\n");
     printf("(1) Fácil (2) Médio (3) Difícil\n\n");
     printf("Escolha: ");
-    scanf("%d", &nivel);
+    scanf_s("%d", &nivel);
 
     int numerotentativas;
-    switch (nivel) { // funciona como = if(), else if(), else
+    switch (nivel) {
     case 1:
         numerotentativas = 20;
         break;
@@ -39,12 +54,10 @@ int main() {
         break;
     }
 
-    printf("Numero secreto: %d ", numerosecreto);
-
     for (int i = 1; i <= numerotentativas; i++) {
         printf("Tentativa %d\n", tentativas);
         printf("Qual é o seu chute? ");
-        scanf("%d", &chute);
+        scanf_s("%d", &chute);
         printf("Seu chute foi %d\n", chute);
 
         if (chute < 0) {
@@ -75,11 +88,28 @@ int main() {
         printf("Você ganhou!\n");
         printf("Você acertou em %d tentativas!\n", tentativas);
         printf("Total de pontos: %.1f\n", pontos);
+        printf("      _.-'''''-._\n");
+        printf("    .'  _     _  '.\n");
+        printf("   /   (_)   (_)   \\\n");    // usamos um caracter especial 2x para mostrar na tela
+        printf("  |  ,           ,  |\n");
+        printf("  |  \\`.       .`/  |\n");
+        printf("   \\  '.`'\"\"'\"`.'  /\n");
+        printf("    '.  `'---'`  .'\n");
+        printf("      '-._____.-'\n");
+
     }
     else {
-        printf("Você perdeu! Tente de novo!\n");
+        printf("Você perdeu! Tente de novo!\n\n");
+        printf("  , ; ,   .-'\"\"\"'-.   , ; ,\n");
+        printf("  \\\\|/  .'         '.  \\\\|//\n");
+        printf("   \\-;-/   ()   ()   \\-;-/\n");
+        printf("   // ;               ; \\\\\n");
+        printf("  //__; :.         .; ;__\\\\\n");
+        printf(" `-----\\'.'-.....-'.'/-----'\n");
+        printf("        '.'.-.-,_.'.'\n");
+        printf("          '(  (..-'\n");
+        printf("            '-'");
     }
 
     return 0;
-
 }
