@@ -1,7 +1,6 @@
-//casting eh a ideia de converter um tipo no outro, 
-//basta dizer o tipo antes de usar a variavel/numeral
 #include <stdio.h>
 #include <locale.h>
+#include <stdlib.h> // funçao abs converte negativo para positivo
 
 int main() {
     setlocale(LC_ALL, "portuguese");
@@ -47,15 +46,10 @@ int main() {
 
         tentativas++;
 
-        double pontosperdidos = (double)(chute - numerosecreto) / (double)2;
-        if (pontosperdidos < 0) {
-            pontosperdidos = pontosperdidos * -1;
-        }//nesse if tratamos no caso do chute ser menor, e, dar valor superior a 1000
+        double pontosperdidos = (abs)(chute - numerosecreto) / (double)2;
+
         pontos = pontos - pontosperdidos;
     }
-    //(double)(chute - numerosecreto): Aqui, usamos casting para converter
-    // o resultado da subtração (um int) para um número do tipo double (um número com casa decimal).
-    // porque queremos dividir o resultado como número de ponto flutuante.
 
     printf("Fim de jogo\n");
     printf("Você acertou em %d tentativas!\n", tentativas);
@@ -64,4 +58,14 @@ int main() {
     return 0;
 
 }
+/*
+O que acontece com o abs?
+Com o uso de abs, a diferença chute - numerosecreto será convertida para um valor positivo antes de ser utilizada no cálculo dos pontos perdidos.
+Isso evita que a pontuação seja alterada de forma errada caso o resultado dessa diferença seja negativo.
 
+Por exemplo:
+
+Se chute for 50 e o numerosecreto for 42, então chute - numerosecreto = 8. O valor absoluto de 8 é 8.
+Se chute for 30 e o numerosecreto for 42, então chute - numerosecreto = -12. O valor absoluto de -12 é 12.
+Isso garante que os pontos perdidos sempre aumentem conforme a diferença aumenta, independentemente da ordem dos números.
+*/
