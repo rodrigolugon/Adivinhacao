@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <locale.h>
-#include <stdlib.h> // funçao abs converte negativo para positivo
+#include <stdlib.h>
+#include <time.h> //pega todos os sec passados desde 1 jan 1970 ate agora
 
 int main() {
     setlocale(LC_ALL, "portuguese");
@@ -9,12 +10,40 @@ int main() {
     printf("* Bem vindo ao nosso jogo de adivinhação *\n");
     printf("******************************************\n");
 
-    int numerosecreto = 42;
+    int segundos = time(0);
+    srand(segundos);
+
+    int numerogrande = rand();
+    // me da um numero maluco, preciso dividir por 100 pq quero 1 ou 2 digitos;
+
+    int numerosecreto = numerogrande % 100;
     int chute;
     int tentativas = 1;
     double pontos = 1000;
 
-    while (1) {
+
+    int acertou = 0;
+
+    int nivel;
+    printf("Qual nível de dificuldade?\n");
+    printf("(1) Fácil (2) Médio (3) Difícil\n\n");
+    printf("Escolha: ");
+    scanf_s("%d", &nivel);
+
+    int numerotentativas;
+    if (nivel == 1) {
+        numerotentativas = 20;
+    }
+    else if (nivel == 2) {
+        numerotentativas = 15;
+    }
+    else {
+        numerotentativas = 6;
+    } // quero definir o num de tentativas
+
+    //printf("Numero secreto: %d ", numerosecreto); PARA TESTAR
+
+    for (int i = 1; i <= numerotentativas; i++) {
 
 
         printf("Tentativa %d\n", tentativas);
@@ -27,45 +56,41 @@ int main() {
             continue;
         }
 
-        int acertou = (chute == numerosecreto);
+        acertou = (chute == numerosecreto);
         int maior = chute > numerosecreto;
 
         if (acertou) {
-            printf("Parabéns! Você acertou!\n");
-            printf("Jogue de novo, você é um bom jogador!\n");
             break;
         }
 
         else if (maior) {
-            printf("Seu chute é maior que o número secreto\n");
+            printf("Seu chute é maior que o número secreto\n\n");
 
         }
         else {
-            printf("Seu chute é menor que o número secreto\n");
+            printf("Seu chute é menor que o número secreto\n\n");
         }
 
         tentativas++;
 
-        double pontosperdidos = (abs)(chute - numerosecreto) / (double)2;
+        double pontosperdidos = abs(chute - numerosecreto) / (double)2;
 
         pontos = pontos - pontosperdidos;
     }
 
+
     printf("Fim de jogo\n");
-    printf("Você acertou em %d tentativas!\n", tentativas);
-    printf("Total de pontos: %.1f\n", pontos);
+    if (acertou) {
+        printf("Você ganhou!\n");
+        printf("Você acertou em %d tentativas!\n", tentativas);
+        printf("Total de pontos: %.1f\n", pontos);
+
+    }
+    else {
+        printf("Você perdeu! Tente de novo!\n");
+    }
 
     return 0;
 
 }
-/*
-O que acontece com o abs?
-Com o uso de abs, a diferença chute - numerosecreto será convertida para um valor positivo antes de ser utilizada no cálculo dos pontos perdidos.
-Isso evita que a pontuação seja alterada de forma errada caso o resultado dessa diferença seja negativo.
 
-Por exemplo:
-
-Se chute for 50 e o numerosecreto for 42, então chute - numerosecreto = 8. O valor absoluto de 8 é 8.
-Se chute for 30 e o numerosecreto for 42, então chute - numerosecreto = -12. O valor absoluto de -12 é 12.
-Isso garante que os pontos perdidos sempre aumentem conforme a diferença aumenta, independentemente da ordem dos números.
-*/
